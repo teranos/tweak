@@ -1,0 +1,12 @@
+{
+  "name": "tweak",
+  "description": "tweak: every adjustable number of a piece, as a glyph",
+  "type": "module",
+  "exports": "./tweak.ts",
+  "peerDependencies": {
+    "@jsr/qntx__glyphs": "0.13.0"
+  },
+  "devDependencies": {
+    "happy-dom": "20.0.11"
+  }
+}
