@@ -8,12 +8,12 @@
         "happy-dom": "20.0.11",
       },
       "peerDependencies": {
-        "@jsr/teranos__elements": "1.36.1",
+        "@jsr/teranos__elements": "1.36.2",
       },
     },
   },
   "packages": {
-    "@jsr/teranos__elements": ["@jsr/teranos__elements@1.36.1", "https://npm.jsr.io/~/11/@jsr/teranos__elements/1.36.1.tgz", {}, "sha512-ck+jVA1BNE7k+8L+R3mJhh+6FxlbQ6Du2IE1TwDqyKT/h2Jg5aeeXoQBqDcDkFgJvdpaGJuYDmWeHXvrNJ141g=="],
+    "@jsr/teranos__elements": ["@jsr/teranos__elements@1.36.2", "https://npm.jsr.io/~/11/@jsr/teranos__elements/1.36.2.tgz", {}, "sha512-KGzSnaQyawUIzTef1ldT3mNEGbeGgMlFL9WSuthrnEc/GWWV97lysAzmdrUVLySUVHQ5mGBaB9YhSbtk0MXVUw=="],
 
     "@types/node": ["@types/node@20.19.43", "", { "dependencies": { "undici-types": "~6.21.0" } }, "sha512-6oYBAi5ikg4Pl+kGsoYtawUMBT2zZMCvPNF7pVLnHZfd1zf38DRiWn/gT01RYCdUqkv7Fhr+C9ot4/tb+2sVvA=="],
 

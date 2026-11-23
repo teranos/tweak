@@ -4,7 +4,7 @@
   "type": "module",
   "exports": "./tweak.ts",
   "peerDependencies": {
-    "@jsr/teranos__elements": "1.36.1"
+    "@jsr/teranos__elements": "1.36.2"
   },
   "devDependencies": {
     "happy-dom": "20.0.11"

@@ -27,13 +27,27 @@ export interface TweakOptions {
 // tweak's own look. The glyph element carries an inline white-space: nowrap
 // that every manifestation inherits, so the panel wraps again from its root:
 // a long label never runs under its slider or gets cut off.
+// "and sliders should honestly look more like they belong"
+// "like, the tweak panel itself should be a bit more see through, you would say"
+// "and not really have a color of its own"
+// "and no bold"
+// "or italic"
+// "and for its buttons to be correctly placed"
+// "and its borders dont have to be this white and present, can be way more see through"
+// 「[Opus 5.5] Everything in it is drawn in the words' colour, at less or more strength; nothing is」
+// 「[Opus 5.5] weighted or slanted.」
 export const TWEAK_CSS = `
+[data-element-id='tweak'], [data-element-id='tweak'] * { font-weight: 400; font-style: normal; }
 .tweak { white-space: normal; text-align: left; }
-.tweak-row { display: grid; grid-template-columns: 170px 1fr 64px; gap: 8px; align-items: center; }
-.tweak-row span { overflow-wrap: break-word; word-break: break-word; }
-.tweak-group { margin-top: 10px; color: #ffd36b; }
-.tweak input[type='number'] { width: 64px; font: inherit; }
-.tweak-actions { margin-top: 10px; display: flex; gap: 8px; }
+.tweak-row { display: grid; grid-template-columns: minmax(90px, 140px) 1fr 56px; gap: 10px; align-items: center; min-height: 26px; }
+.tweak-row span { overflow-wrap: break-word; word-break: break-word; opacity: 0.85; }
+.tweak-group { margin: 4px 0 6px; opacity: 0.55; }
+.tweak input[type='range'] { width: 100%; min-width: 120px; margin: 0; accent-color: currentColor; opacity: 0.8; }
+.tweak input[type='number'] { width: 56px; box-sizing: border-box; font: inherit; color: inherit; background: transparent;
+  border: 1px solid color-mix(in srgb, currentColor 22%, transparent); border-radius: 4px; padding: 2px 4px; text-align: right; }
+.tweak-actions { margin-top: 10px; display: flex; justify-content: flex-end; gap: 8px; }
+.tweak button { font: inherit; color: inherit; background: transparent; cursor: pointer;
+  border: 1px solid color-mix(in srgb, currentColor 22%, transparent); border-radius: 4px; padding: 3px 10px; }
 `
 
 // One style, first in <head>, so any host stylesheet that follows wins.
@@ -91,6 +105,9 @@ export function tweakElement(o: TweakOptions): Element {
     title: 'tweak',
     symbol: '≈',
     opensAs: 'window',
+    // vitreous's thin glass, made of what the page says its glass is made of (--glass-rgb).
+    color: 'var(--glass-thin, rgb(0 0 0 / 0.42))',
+    border: '1px solid var(--glass-thin-border, rgb(255 255 255 / 0.12))',
     renderContent: () => {
       panel ??= build(o, kept.save)
       return panel
