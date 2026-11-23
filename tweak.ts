@@ -136,6 +136,7 @@ function keeper(o: TweakOptions) {
       kept.current = String(n)
       kept.profiles[kept.current] = { ...o.values }
       write()
+      o.onChange(o.values)
       return kept.current
     },
     use(name: string) {
