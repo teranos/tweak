@@ -23,7 +23,7 @@ function setup() {
   })
   const panel = glyph.renderContent()
   const ranges = [...panel.querySelectorAll('input[type="range"]')] as HTMLInputElement[]
-  const numbers = [...panel.querySelectorAll('output')] as HTMLOutputElement[]
+  const numbers = [...panel.querySelectorAll('.tweak-exact')] as HTMLElement[]
   return { values, changes, errors, glyph, panel, ranges, numbers }
 }
 

@@ -43,8 +43,8 @@ export const TWEAK_CSS = `
 .tweak { white-space: normal; text-align: left; font-size: 12px; }
 .tweak-profiles { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 8px; }
 .tweak-row { display: grid; grid-template-columns: minmax(90px, 140px) 1fr 44px; gap: 10px; align-items: center; min-height: 24px; }
-.tweak-row span { overflow-wrap: break-word; word-break: break-word; opacity: 0.85; }
-.tweak-row output { text-align: right; opacity: 0.85; }
+.tweak-row > span:first-child { overflow-wrap: break-word; word-break: break-word; opacity: 0.85; }
+.tweak-row .tweak-exact { text-align: right; opacity: 0.85; }
 .tweak-group { margin: 4px 0 6px; opacity: 0.55; }
 .tweak input[type='range'] { width: 100%; min-width: 120px; margin: 0; accent-color: currentColor; opacity: 0.8; }
 .tweak-actions { margin-top: 10px; display: flex; justify-content: flex-end; gap: 8px; }
@@ -222,7 +222,8 @@ function build(o: TweakOptions, kept: Keeper): HTMLElement {
     range.min = String(p.min)
     range.max = String(p.max)
     range.step = String(p.step)
-    const exact = document.createElement('output')
+    const exact = document.createElement('span')
+    exact.className = 'tweak-exact'
     const show = () => {
       range.value = exact.textContent = String(o.values[p.key])
     }
