@@ -125,9 +125,11 @@ describe('Jenny: profiles', () => {
   const profileButtons = (panel: HTMLElement) => [...panel.querySelectorAll('.tweak-profiles button')] as HTMLButtonElement[]
 
   test('+ makes a new profile from what is tuned now, and it is the one in use', () => {
-    const { panel, ranges } = setup()
+    const { panel, ranges, changes } = setup()
     set(ranges[0], '2', 'input')
+    const before = changes.length
     profileButtons(panel).at(-1)!.click()
+    expect(changes.length).toBe(before + 1)
     const buttons = profileButtons(panel)
     expect(buttons.map(b => b.textContent)).toEqual(['1', '2', '+'])
     expect(buttons[1].getAttribute('aria-pressed')).toBe('true')
