@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test'
-import { type TweakParam, tweakGlyph } from './tweak'
+import { type TweakParam, tweakElement } from './tweak'
 
 const PARAMS: TweakParam[] = [
   { key: 'zoom', label: 'zoom', group: 'shape', min: 0.2, max: 5, step: 0.01 },
@@ -11,7 +11,7 @@ function setup() {
   const values: Record<string, number> = { zoom: 1, folds: 3, hue: 0 }
   const changes: Record<string, number>[] = []
   const errors: string[] = []
-  const glyph = tweakGlyph({
+  const glyph = tweakElement({
     params: PARAMS,
     values,
     onChange: v => changes.push({ ...v }),
@@ -29,12 +29,12 @@ function set(input: HTMLInputElement, value: string, event: 'input' | 'change') 
   input.dispatchEvent(new Event(event))
 }
 
-describe('Tim: tweak is a glyph that opens as a window of tweaks', () => {
-  test('it is the tweak glyph, and opens as a window', () => {
+describe('Tim: tweak is an element that opens as a window of tweaks', () => {
+  test('it is the tweak element, and opens as a window', () => {
     const { glyph } = setup()
     expect(glyph.id).toBe('tweak')
     expect(glyph.title).toBe('tweak')
-    expect(glyph.manifestationType).toBe('window')
+    expect(glyph.opensAs).toBe('window')
   })
 
   test('one slider and one exact number box per tweak, at the current values', () => {

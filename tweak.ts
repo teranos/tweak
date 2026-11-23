@@ -1,6 +1,6 @@
-import type { Glyph } from '@jsr/qntx__glyphs'
+import type { Element } from '@jsr/teranos__elements'
 
-// tweak: every adjustable number of a piece, as a glyph. It rests in the tray
+// tweak: every adjustable number of a piece, as an element. It rests in the tray
 // as a dot and opens as a window of tweaks. The panel is built once and the
 // same element is shown every time it opens: nothing is reconstructed.
 
@@ -44,15 +44,13 @@ function ensureStyle(): void {
   document.head.prepend(style)
 }
 
-export function tweakGlyph(o: TweakOptions): Glyph {
+export function tweakElement(o: TweakOptions): Element {
   let panel: HTMLElement | null = null
   return {
     id: 'tweak',
     title: 'tweak',
     symbol: '≈',
-    manifestationType: 'window',
-    initialWidth: '460px',
-    initialHeight: '620px',
+    opensAs: 'window',
     renderContent: () => {
       panel ??= build(o)
       return panel
@@ -128,3 +126,6 @@ function build(o: TweakOptions): HTMLElement {
   showJson()
   return panel
 }
+
+// The name it had while elements were glyphs.
+export const tweakGlyph = tweakElement
