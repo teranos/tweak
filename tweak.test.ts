@@ -1,4 +1,4 @@
-import { describe, expect, test } from 'bun:test'
+import { beforeEach, describe, expect, test } from 'bun:test'
 import { type TweakParam, tweakElement } from './tweak'
 
 const PARAMS: TweakParam[] = [
@@ -6,6 +6,9 @@ const PARAMS: TweakParam[] = [
   { key: 'folds', label: 'fractal folds', group: 'shape', min: 1, max: 6, step: 1 },
   { key: 'hue', label: 'hue', group: 'colour', min: 0, max: 1, step: 0.01 },
 ]
+
+// Each test starts from a page that has kept nothing.
+beforeEach(() => localStorage.clear())
 
 function setup() {
   const values: Record<string, number> = { zoom: 1, folds: 3, hue: 0 }
@@ -105,5 +108,30 @@ describe('Jenny: opening tweak again reveals what was always there', () => {
     const zoom = again.querySelector('input[type="range"]') as HTMLInputElement
     expect(zoom.value).toBe('4')
     expect(values.zoom).toBe(4)
+  })
+})
+
+describe('Jenny: what she tuned is there after a reload, with nothing to copy', () => {
+  test('a change is kept, and a new tweak on the same page starts from it', () => {
+    localStorage.clear()
+    const first = setup()
+    set(first.ranges[0], '3.2', 'input')
+    const again = setup()
+    expect(again.values.zoom).toBe(3.2)
+    expect(again.ranges[0].value).toBe('3.2')
+    expect(again.changes.at(-1)?.zoom).toBe(3.2)
+  })
+
+  test('there is nothing to copy', () => {
+    localStorage.clear()
+    const { panel } = setup()
+    expect([...panel.querySelectorAll('button')].map(b => b.textContent)).toEqual(['reset'])
+  })
+
+  test('what was kept is pulled into its range, and anything not a number is ignored', () => {
+    localStorage.setItem(`tweak:${location.pathname}`, JSON.stringify({ zoom: 99, folds: 'many' }))
+    const { values } = setup()
+    expect(values.zoom).toBe(5)
+    expect(values.folds).toBe(3)
   })
 })

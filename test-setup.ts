@@ -11,3 +11,8 @@ globalThis.document = window.document
 globalThis.HTMLElement = window.HTMLElement
 // @ts-ignore
 globalThis.Event = window.Event
+// tweak keeps what was tuned in the page's storage, under the page's path.
+// @ts-ignore
+globalThis.localStorage = window.localStorage
+// @ts-ignore
+globalThis.location = window.location
