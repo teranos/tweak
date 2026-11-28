@@ -1,9 +1,9 @@
 # tweak
 
-Every adjustable number of a piece, as an element.
+「[Opus 5.5] Every adjustable number of a piece, as an element.」
 
 Every number in a look is a guess until someone who can see it moves it.
-tweak is how they get moved: an element on the [@teranos/elements](https://jsr.io/@teranos/elements)
+「[Opus 5.5] tweak is how they get moved: an element on the [@teranos/elements](https://jsr.io/@teranos/elements)」
 runtime that rests in the tray as a dot and opens as a window of tweaks, one
 slider and one exact number box per number, grouped, with copy, reset and the
 live values as JSON.
@@ -14,14 +14,14 @@ change made while it was closed is still there: nothing is reconstructed.
 ## Use
 
 ```ts
-import { tray } from '@jsr/teranos__elements'
-import { tweakElement } from 'tweak'
+「[Opus 5.5] import { tray } from '@jsr/teranos__elements'」
+「[Opus 5.5] import { tweakElement } from 'tweak'」
 
 const look = { zoom: 1, hue: 0 }
 
-tray.init()
-tray.add(
-  tweakElement({
+「[Opus 5.5] tray.init()」
+「[Opus 5.5] tray.add(」
+  「[Opus 5.5] tweakElement({」
     params: [
       { key: 'zoom', label: 'zoom', group: 'shape', min: 0.2, max: 5, step: 0.01 },
       { key: 'hue', label: 'hue', group: 'colour', min: 0, max: 1, step: 0.01 },
