@@ -7,7 +7,7 @@ const PARAMS: TweakParam[] = [
   { key: 'hue', label: 'hue', group: 'colour', min: 0, max: 1, step: 0.01 },
 ]
 
-// Each test starts from a page that has kept nothing.
+// 「[Opus 5.5] Each test starts from a page that has kept nothing.」
 beforeEach(() => localStorage.clear())
 
 function setup() {
@@ -111,7 +111,7 @@ describe('Jenny: what she tuned is there after a reload, with nothing to copy', 
   })
 
   test('what was kept is pulled into its range, and anything not a number is ignored', () => {
-    // Kept before there were profiles: it becomes the first one.
+    // 「[Opus 5.5] Kept before there were profiles: it becomes the first one.」
     localStorage.setItem(`tweak:${location.pathname}`, JSON.stringify({ zoom: 99, folds: 'many' }))
     const { values } = setup()
     expect(values.zoom).toBe(5)
