@@ -1,4 +1,4 @@
-# @qntx/glyphs installs through JSR's npm-compatible registry, where it lives
+# @teranos/elements installs through JSR's npm-compatible registry, where it lives
 # under the @jsr scope.
 [install.scopes]
 "@jsr" = "https://npm.jsr.io"
