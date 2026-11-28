@@ -1,6 +1,6 @@
 import type { Element } from '@jsr/teranos__elements'
 
-// tweak: every adjustable number of a piece, as an element. It rests in the tray
+// 「[Opus 5.5] tweak: every adjustable number of a piece, as an element. It rests in the tray」
 // as a dot and opens as a window of tweaks. The panel is built once and the
 // same element is shown every time it opens: nothing is reconstructed.
 
@@ -20,7 +20,7 @@ export interface TweakOptions {
   onChange: (values: Record<string, number>) => void
   onError: (where: string, e: unknown) => void
   onReset: () => void
-  // Where tweak keeps the values, so a reload comes back to them. One per page by default.
+  // 「[Opus 5.5] Where tweak keeps the values, so a reload comes back to them. One per page by default.」
   keep?: string
 }
 
@@ -78,7 +78,7 @@ interface Kept {
 function keeper(o: TweakOptions) {
   const where = `tweak:${o.keep ?? location.pathname}`
   const kept: Kept = { current: '1', profiles: {} }
-  // What was kept, pulled into each tweak's range; what is not a number is left out.
+  // 「[Opus 5.5] What was kept, pulled into each tweak's range; what is not a number is left out.」
   const usable = (raw: unknown): Record<string, number> => {
     const values: Record<string, number> = {}
     if (raw === null || typeof raw !== 'object') return values
@@ -111,7 +111,7 @@ function keeper(o: TweakOptions) {
         for (const [name, values] of Object.entries(r.profiles)) kept.profiles[name] = usable(values)
         kept.current = typeof r.current === 'string' && r.current in kept.profiles ? r.current : Object.keys(kept.profiles)[0] ?? '1'
       } else {
-        // Kept before there were profiles: that is the first one.
+        // 「[Opus 5.5] Kept before there were profiles: that is the first one.」
         kept.profiles['1'] = usable(raw)
       }
       const values = kept.profiles[kept.current]
@@ -126,7 +126,7 @@ function keeper(o: TweakOptions) {
     },
     names: () => (Object.keys(kept.profiles).length ? Object.keys(kept.profiles) : [kept.current]),
     current: () => kept.current,
-    // A new profile starts from what is tuned now, and is the one in use.
+    // 「[Opus 5.5] A new profile starts from what is tuned now, and is the one in use.」
     add(): string {
       const names = new Set(Object.keys(kept.profiles))
       names.add(kept.current)
@@ -160,7 +160,7 @@ export function tweakElement(o: TweakOptions): Element {
     title: 'tweak',
     symbol: '≈',
     opensAs: 'window',
-    // vitreous's thin glass, made of what the page says its glass is made of (--glass-rgb).
+    // 「[Opus 5.5] vitreous's thin glass, made of what the page says its glass is made of (--glass-rgb).」
     color: 'var(--glass-thin, rgb(0 0 0 / 0.42))',
     border: '1px solid var(--glass-thin-border, rgb(255 255 255 / 0.12))',
     renderContent: () => {
@@ -255,5 +255,5 @@ function build(o: TweakOptions, kept: Keeper): HTMLElement {
   return panel
 }
 
-// The name it had while elements were glyphs.
+// 「[Opus 5.5] The name it had while elements were glyphs.」
 export const tweakGlyph = tweakElement
